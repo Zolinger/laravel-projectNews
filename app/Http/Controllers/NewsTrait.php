@@ -10,7 +10,7 @@ trait NewsTrait
     public function getCategory(int $id = null): array
    {
        $category = [];
-       $quantityCategory = 5;
+       $quantityCategory = 8;
 
        if ($id === null) {
            for($i=1; $i <= $quantityCategory; $i++) {
@@ -33,7 +33,7 @@ trait NewsTrait
    public function getNews(int $id = null): array
    {
        $news = [];
-       $quantityNews = 4;
+       $quantityNews = 6;
 
        if ($id === null) {
            for($i=1; $i <= $quantityNews; $i++) {

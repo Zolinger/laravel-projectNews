@@ -3,4 +3,4 @@
   <a style="text-decoration: none" href="<?=route('news', ['id' => $n['id']])?>"><h2><?=$n['title']?></h2></a> 
   </div>
 <?php endforeach; ?>
-<a style="text-decoration: none" href="<?=route('welcome')?>"><h2>Back</h2></a>
+<a style="text-decoration: none" href="<?=route('news')?>"><h2>Back</h2></a>

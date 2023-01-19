@@ -3,7 +3,8 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Illuminate\Contracts\View\View;
+
 
 class NewsController extends Controller
 {
@@ -18,20 +19,22 @@ class NewsController extends Controller
 
     public function showCategory()
     {
-        return \view('news.index', [
-            'news' => $this->getNews(),
+        return \view('category.show', [
+            'category' => $this->getCategory(),
         ]);
     }
 
-    public function indexNews()
+    public function indexNews(): View
     {
         return \view('news.index', [
             'news' => $this->getNews(),
         ]);
     }
 
-    public function showNews(int $id)
+    public function showNews(int $id): View
     {
-        return $this->getNews($id);
+        return \view('news.show', [
+            'news' => $this->getNews($id),
+        ]);
     }
 }
