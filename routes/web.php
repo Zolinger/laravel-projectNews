@@ -3,6 +3,10 @@
 use App\Http\Controllers\NewsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\IndexController;
+use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
+use App\Http\Controllers\Admin\NewsController as AdminNewsController;
+use App\Http\Controllers\Admin\UnloadingController as AdminUnloadingController;
+use App\Http\Controllers\Feedback\IndexController as FeedbackIndexController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,12 +19,13 @@ use App\Http\Controllers\Admin\IndexController;
 |
 */
 
-
-
 //admin routes
-Route::group(['prefix' => 'admin'], static function() {
+Route::group(['prefix' => 'admin', 'as' => 'admin.'], static function() {
     Route::get('/', IndexController::class)
-        ->name('admin.index');
+        ->name('index');
+    Route::resource('categories', AdminCategoryController::class);
+    Route::resource('news', AdminNewsController::class);
+    Route::resource('unloading', AdminUnloadingController::class);
 });
 
 Route::group(['prefix' => ''], static function() {
@@ -35,3 +40,8 @@ Route::group(['prefix' => ''], static function() {
     ->where('id', '\d+')
         ->name('news.show');
  });
+
+ Route::group(['prefix' => 'feedback', 'as' => 'feedback.'], static function() {
+    Route::get('/', FeedbackIndexController::class)
+        ->name('index');
+});

@@ -6,7 +6,7 @@
     <input class="form-control form-control-dark w-100 rounded-0 border-0" type="text" placeholder="Search" aria-label="Поиск">
     <div class="navbar-nav">
       <div class="nav-item text-nowrap">
-        <a class="nav-link px-3" href="#">Выйти</a>
+        <a class="nav-link px-3" href="{{ route('news')}}">Выйти</a>
       </div>
     </div>
   </header>

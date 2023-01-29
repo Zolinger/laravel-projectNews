@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Feedback;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
-class NewsController extends Controller
+class FeedbackController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +17,7 @@ class NewsController extends Controller
      */
     public function index(): View
     {
-        return \view('admin.news.index');
+        return \view('feedback.index');
     }
 
     /**
@@ -25,9 +25,9 @@ class NewsController extends Controller
      *
      * @return View
      */
-    public function create(): View
+    public function create()
     {
-        return \view('admin.news.create');
+        //
     }
 
     /**
@@ -57,9 +57,9 @@ class NewsController extends Controller
      *
      * @return View
      */
-    public function edit(): View
+    public function edit()
     {
-        return \view('admin.news.edit');
+        
     }
 
     /**

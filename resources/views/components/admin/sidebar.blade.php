@@ -1,28 +1,38 @@
 <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
     <div class="position-sticky pt-3 sidebar-sticky">
-      <ul class="nav flex-column">
+      <ul>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">
-            <span data-feather="home" class="align-text-bottom"></span>
+          <a class="nav-link @if(request()->routeIs('admin.index')) active @endif" href="{{ route('admin.index')}}">
             Главная
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">
-            <span data-feather="file" class="align-text-bottom"></span>
+          <a class="nav-link @if(request()->routeIs('admin.categories.*')) active @endif" href="#">
             Категории
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">
-            <span data-feather="shopping-cart" class="align-text-bottom"></span>
-            Новости
+          <ul>
+            <li>
+              <a class="nav-link @if(request()->routeIs('admin.news.*')) active @endif" href="{{ route('admin.news.create')}}">
+              Создать новость
+            </a>
+          </li>
+          <li>
+            <a class="nav-link" href="#">
+            Редактировать новость
           </a>
+        </li>
+          </ul>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">
-            <span data-feather="users" class="align-text-bottom"></span>
             Пользователи
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link @if(request()->routeIs('admin.unloading.index')) active @endif" href="{{ route('admin.unloading.index')}}">
+            Выгрузка данных
           </a>
         </li>
       </ul>
