@@ -15,14 +15,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('failed_jobs', static function (Blueprint $table) {
-            $table->id();
-            $table->string('uuid')->unique();
-            $table->text('connection');
-            $table->text('queue');
-            $table->longText('payload');
-            $table->longText('exception');
-            $table->timestamp('failed_at')->useCurrent();
+        Schema::create('news_from_sources', static function (Blueprint $table) {
+            $table->foreignId('news_source_id')
+                ->constrained('news_sources')
+                ->cascadeOnDelete();
+
+            $table->foreignId('news_id')
+                ->constrained('news')
+                ->cascadeOnDelete();
         });
     }
 
@@ -33,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('failed_jobs');
+        Schema::dropIfExists('news_from_sources');
     }
 };
