@@ -12,6 +12,9 @@
           </a>
         </li>
         <li class="nav-item">
+          <a class="nav-link @if(request()->routeIs('admin.news.*')) active @endif" href="{{ route('admin.news.index')}}">
+            Раздел новостей
+          </a>
           <ul>
             <li>
               <a class="nav-link @if(request()->routeIs('admin.news.*')) active @endif" href="{{ route('admin.news.create')}}">
@@ -26,8 +29,8 @@
           </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">
-            Пользователи
+          <a class="nav-link @if(request()->routeIs('admin.feedback.*')) active @endif" href="{{ route('admin.feedback.index')}}">
+            Отзывы
           </a>
         </li>
         <li class="nav-item">

@@ -57,4 +57,5 @@ trait NewsTrait
            'created_at' => \now()->format('d-m-Y H:i'),
        ];
    }
+
 }

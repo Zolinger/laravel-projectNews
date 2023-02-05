@@ -5,8 +5,9 @@
         <h1 class="h2">Форма обратной связи</h1>
         <br>
         <div>
-            <form method="post" action="#">
+            <form method="post" action="{{ route('admin.feedback.store') }}">
                 @csrf
+                @method('put')
                  <div class="form-group">
                      <label for="username">Имя пользователя</label>
                      <input type="text" id="username" name="username" value="{{ old('username') }}" class="form-control">

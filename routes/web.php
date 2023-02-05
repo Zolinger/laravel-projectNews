@@ -1,12 +1,14 @@
 <?php
 
-use App\Http\Controllers\NewsController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\IndexController;
-use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
+use App\Http\Controllers\NewsController;
+
+
 use App\Http\Controllers\Admin\NewsController as AdminNewsController;
+use App\Http\Controllers\Admin\IndexController as AdminIndexController;
+use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\UnloadingController as AdminUnloadingController;
-use App\Http\Controllers\Feedback\IndexController as FeedbackIndexController;
+use App\Http\Controllers\Admin\FeedbackController as AdminFeedbackController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,10 +23,11 @@ use App\Http\Controllers\Feedback\IndexController as FeedbackIndexController;
 
 //admin routes
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], static function() {
-    Route::get('/', IndexController::class)
+    Route::get('/', AdminIndexController::class)
         ->name('index');
     Route::resource('categories', AdminCategoryController::class);
     Route::resource('news', AdminNewsController::class);
+    Route::resource('feedback', AdminFeedbackController::class);
     Route::resource('unloading', AdminUnloadingController::class);
 });
 
@@ -40,8 +43,3 @@ Route::group(['prefix' => ''], static function() {
     ->where('id', '\d+')
         ->name('news.show');
  });
-
- Route::group(['prefix' => 'feedback', 'as' => 'feedback.'], static function() {
-    Route::get('/', FeedbackIndexController::class)
-        ->name('index');
-});
