@@ -6,10 +6,13 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Feedback;
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Contracts\View\View;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use App\QueryBuilders\FeedbackQueryBuilder;
+use App\Http\Requests\Admin\FeedbackRequest;
+
 
 class FeedbackController extends Controller
 {   
@@ -21,7 +24,7 @@ class FeedbackController extends Controller
      */
     public function index(FeedbackQueryBuilder $feedbackQueryBuilder): View
     {
-        return \view('admin.feedback.index', ['feedbackList' => $feedbackQueryBuilder->getFeedbackWithPagination()
+        return \view('admin.feedback.index', ['feedbackList' => $feedbackQueryBuilder->getAll()
     ]);
     }
 
@@ -40,21 +43,18 @@ class FeedbackController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
+     * @param FeedbackRequest $request
      * @return RedirectResponse
      */
-    public function store(Request $request): RedirectResponse
+    public function store(FeedbackRequest $request): RedirectResponse
     {
-        $request->validate([
-            'username' => 'required',
-        ]);
-        $feedback = new Feedback($request->except('_token', 'feedback_id')); //Feedback::create();
+        $feedback = Feedback::create($request->validated());
 
-        if ($feedback->save()) {
-            return \redirect()->route('admin.feedback.index')->with('success', 'Отзыв успешно отправлен');
+        if ($feedback) {
+            return \redirect()->route('admin.feedback.index')->with('success', __('messages.admin.feedback.success'));
         }
 
-        return \back()->with('error', 'Не удалось отправить отзыв');
+        return \back()->with('error', __('messages.admin.feedback.fail'));
     }
 
     /**
@@ -93,11 +93,19 @@ class FeedbackController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  Feedback  $feedback
+     * @return Response
      */
-    public function destroy($id)
+    public function destroy(Feedback $feedback): JsonResponse
     {
-        //
+        try{
+            $feedback->delete();
+
+            return \response()->json('ok');
+        } catch (\Exception $exception) {
+            \Log::error($exception->getMessage(), [$exception]);
+
+            return \response()->json('error', 400);
+        }
     }
 }

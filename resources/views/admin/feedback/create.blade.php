@@ -7,14 +7,13 @@
         <div>
             <form method="post" action="{{ route('admin.feedback.store') }}">
                 @csrf
-                @method('put')
                  <div class="form-group">
                      <label for="username">Имя пользователя</label>
-                     <input type="text" id="username" name="username" value="{{ old('username') }}" class="form-control">
-                 </div>
+                     <input type="text" id="username" name="username" value="{{ old('username') }}" class="form-control @error('username') is-invalid @enderror">
+                    </div>
                  <div class="form-group">
                      <label for="comment">Комментарий</label>
-                     <textarea class="form-control" id="comment" name="comment">{{ old('comment') }}</textarea>
+                     <textarea class="form-control @error('comment') is-invalid @enderror" id="comment" name="comment">{{ old('comment') }}</textarea>
                  </div>
                  <br>
                  <button type="submit" class="btn btn-success">Отправить</button>
