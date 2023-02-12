@@ -7,9 +7,26 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link @if(request()->routeIs('admin.categories.*')) active @endif" href="#">
-            Категории
+          <a class="nav-link @if(request()->routeIs('account')) active @endif" href="{{ route('account')}}">
+            Личный кабинет
           </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link @if(request()->routeIs('admin.categories.*')) active @endif" href="{{ route('admin.categories.index')}}">
+            Раздел категорий
+          </a>
+          <ul>
+            <li>
+              <a class="nav-link @if(request()->routeIs('admin.categories.*')) active @endif" href="{{ route('admin.categories.create')}}">
+              Создать категорию
+            </a>
+          </li>
+          <li>
+            <a class="nav-link" href="#">
+            Редактировать категории
+          </a>
+        </li>
+          </ul>
         </li>
         <li class="nav-item">
           <a class="nav-link @if(request()->routeIs('admin.news.*')) active @endif" href="{{ route('admin.news.index')}}">
@@ -38,6 +55,22 @@
             Выгрузка данных
           </a>
         </li>
-      </ul>
+        <li class="nav-item">
+          <a class="nav-link @if(request()->routeIs('admin.users.*')) active @endif" href="{{ route('admin.users.index')}}">
+            Раздел пользователи
+          <ul>
+            <li class="nav-item">
+              <a class="nav-link @if(request()->routeIs('admin.users.index')) active @endif" href="{{ route('admin.users.index')}}">
+                Пользователи
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link">
+                Редактор пользователей
+              </a>
+            </li>
+          </ul>
+        </li>
+      
     </div>
   </nav>

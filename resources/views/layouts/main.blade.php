@@ -70,19 +70,12 @@
     <link href="{{ asset('assets/css/blog.css')}}" rel="stylesheet">
   </head>
   <body>
+    
         <div class="container">
             <x-header></x-header>
             <div class="nav-scroller py-1 mb-2">
                 <nav class="nav d-flex justify-content-between">
                 <a class="p-2 link-secondary" href="{{ route('category')}}">Категории новостей:</a>
-                <a class="p-2 link-secondary" href="#">Политика</a>
-                <a class="p-2 link-secondary" href="#">Спорт</a>
-                <a class="p-2 link-secondary" href="#">Здоровье</a>
-                <a class="p-2 link-secondary" href="#">Техника</a>
-                <a class="p-2 link-secondary" href="#">Культура</a>
-                <a class="p-2 link-secondary" href="#">Природа</a>
-                <a class="p-2 link-secondary" href="#">Наука</a>
-                <a class="p-2 link-secondary" href="#">Путешествия</a>
                 </nav>
             </div>
         </div>

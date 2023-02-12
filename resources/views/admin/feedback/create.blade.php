@@ -4,6 +4,11 @@
     <div class="d-flex; flex-direction: column; flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
         <h1 class="h2">Форма обратной связи</h1>
         <br>
+        @if ($errors->any())
+        @foreach($errors->all() as $error)
+            <x-alert type="danger" :message="$error"></x-alert>
+        @endforeach
+        @endif
         <div>
             <form method="post" action="{{ route('admin.feedback.store') }}">
                 @csrf

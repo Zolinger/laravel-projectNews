@@ -1,0 +1,16 @@
+{
+    "Register": "Регистрация",
+    "Name": "Имя",
+    "Email Address": "Эл.почта",
+    "Password": "Пароль",
+    "Confirm Password": "Повторите пароль",
+    "Login": "Вход",
+    "Logout": "Выход",
+    "Laravel": "На главную",
+    "Remember Me": "Запомнить меня",
+    "Forgot Your Password?": "Забыли пароль?",
+    "Reset Password": "Сброс пароля",
+    "Send Password Reset Link": "Сбросить пароль",
+    "Dashboard": "Панель сообщений",
+    "You are logged in!": "Вы зарегестрированы!"
+}
