@@ -12,7 +12,9 @@ use App\Http\Controllers\Account\IndexController as AccountController;
 use App\Http\Controllers\Admin\IndexController as AdminIndexController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\FeedbackController as AdminFeedbackController;
+use App\Http\Controllers\Admin\ParserController as AdminParserController;
 use App\Http\Controllers\Admin\UnloadingController as AdminUnloadingController;
+use App\Http\Controllers\SocialProvidersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +35,7 @@ Route::group(['middleware' => 'auth'], static function () {
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'is_admin'], static function() {
     Route::get('/', AdminIndexController::class)
         ->name('index');
+    Route::get('/parser', AdminParserController::class);    
     Route::resource('categories', AdminCategoryController::class);
     Route::resource('news', AdminNewsController::class);
     Route::resource('feedback', AdminFeedbackController::class);
@@ -58,3 +61,11 @@ Route::group(['prefix' => ''], static function() {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::group(['middleware' => 'guest'], function() {
+    Route::get('/auth/redirect/{driver}', [SocialProvidersController::class, 'redirect'])
+    ->where('driver', '\w+')
+    ->name('social.auth.redirect');
+    Route::get('/auth/callback/{driver}', [SocialProvidersController::class, 'callback'])
+    ->where('driver', '\w+');
+});
